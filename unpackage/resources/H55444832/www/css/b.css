@@ -1,0 +1,131 @@
+* {
+	/* 初始化 取消页面的内外边距 */
+	padding: 0;
+	margin: 0;
+}
+body {
+	/* 弹性布局 让页面元素垂直+水平居中 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 130vh;
+	background-color: #efeeee;
+}
+.container {
+	display: flex;
+	/* 让一行中的元素平均分配宽度 */
+	justify-content: space-around;
+	align-items: center;
+	/* 元素在一行放不下时自动换行 */
+	flex-wrap: wrap;
+	width: 700px;
+	height: 400px;
+}
+.container .box {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	/* 让元素垂直排列 这里就是让包含图片的div和文字垂直排列 */
+	flex-direction: column;
+	width: 100px;
+	height: 140px;
+	margin: 5px;
+
+}
+.container .box .img {
+	/* 这里让图片在盒子里垂直+水平居中 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 80px;
+	height: 80px;
+	/* 圆角属性 */
+	border-radius: 20px;
+	/* 盒子阴影 */
+	box-shadow: 18px 18px 30px rgba(0, 0, 0, 0.2),
+		-18px -18px 30px rgba(255, 255, 255, 1);
+	/* 过渡时间 ease-out是指先快速 后慢速 */
+	transition: all 0.2s ease-out;
+	outline:none;
+}
+.container .box .img img {
+	width: 50px;
+	transition: all 0.2s ease-out;
+}
+.container .box p {
+	font-size:10px
+	color: slategrey;
+}
+.container .box .img:hover {
+	/* inset 是内部阴影 默认是外部阴影outset */
+	box-shadow: 0 0 0 rgba(0, 0, 0, 0.2), 0 0 0 rgba(255, 255, 255, 0.8),
+		inset 18px 18px 30px rgba(0, 0, 0, 0.1),
+		inset -18px -18px 30px rgba(255, 255, 255, 1);
+}
+.container .box .img:hover img {
+	width: 58px;
+}
+.container div{ 
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+	-webkit-user-select: none;
+	-moz-user-focus: none;
+	-moz-user-select: none;
+
+}
+.container a {
+	/* 相对定位 子绝父相 */
+	position: relative;
+	width: 200px;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	margin: 50px;
+	font-size: 30px;
+	color: #7f8;
+	/* 这个是取消文字下划线 */
+	text-decoration: none;
+	border: 5px solid #7f8;
+	/* 接下来就是四个盒子的颜色了 */
+	/* 刚才定义--i这个属性值可以通过var函数来调用 */
+	/* 刷一下就变了 哈哈 这块calc方法可以自动计算 var函数调用了刚刚我们给a设置的1-4这四个属性值,然后分别计算出了一个度数 hue-rotate这个属性是颜色滤镜 可以添加 不同的度数来改变颜色 最大值360deg 最小是就是0 原来的颜色 */
+	filter: hue-rotate(calc(var(--i) * 90deg));
+}
+.container a::before,
+.container a::after {
+	content: "";
+	position: absolute;
+	width: 15px;
+	height: 5px;
+	background-color: #353b48;
+	/* 这个属性是倾斜 写了一个值就表示在水平方向的倾斜 和skewX是一样的 */
+	transform: skew(50deg);
+	/* 设置一下过渡时间 */
+	transition: all 0.5s;
+}
+.container a::before {
+	top: -5px;
+	left: 10%;
+}
+.container a::after {
+	bottom: -5px;
+	right: 10%;
+}
+.container a:hover::before {
+	left: 80%;
+}
+.container a:hover::after {
+	right: 80%;
+}
+.foot{
+    margin-top: 0px;
+    width: 100%;
+    height: 50px;
+    float: left;
+    clear: both;
+    text-align: center;
+    margin-bottom: 0px;
+}
+.foot p{
+    line-height: 10px;
+    color: rgb(28, 43, 43);
+}

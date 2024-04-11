@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../css/a.css" />
+	</head>
+	<body >
+		<div class="container" id='hot'>
+				
+		</div>
+	</body>
+	
+	<script>
+		var list=["","暗恋者","咒狐","盗贼","丘比特","觉醒预言家","觉醒愚者",
+		"流光伯爵","白昼学者","羊驼","白猫","河豚","子狐","熊","炼金魔女",
+		"纯白之女","定序王子","奇迹商人","猎魔人","乌鸦","守墓人","骑士",
+		"魔术师","摄梦人","守卫","愚者","猎人","女巫","预言家","平民","寻香魅影",
+		"夜之贵族","蚀日侍女","寂夜导师","狼鸦之爪","狼巫","蚀时狼妃","噩梦之影",
+		"血月使徒","隐狼","石像鬼","狼美人","恶灵骑士","狼王","白狼王","狼人"];
+	
+			var query = window.location.search;
+			var params = new URLSearchParams(query);
+			var nums= params.get("myParam");
+			var n=params.get("myParam2")
+			var sum=params.get("myParam3")
+			var id=nums.split(",")
+			var t=parseInt(n)
+			var s=parseInt(sum)
+			var banner=document.getElementById('hot');
+			var flag=1
+			if(id[t]==21)
+			{
+				var ssr=Math.floor((Math.random()*100));
+				if(ssr>97)
+				{
+					flag=0
+				}
+			}
+			if(flag==1)
+			{
+				//console.log(id,t,s)
+				let html=''
+				html += `
+					<div class="box">
+						<div class="img"><img src=`+`../images/`+id[t]+`.png alt="" /></div>
+						<p>${list[id[t]]}</p>
+				    </div>
+					<a style="--i: 3;" onclick="go(${id},${t},${s})">传给下一位</a>
+				  `;
+				banner.innerHTML = html;
+			}
+			else{
+				//console.log(id,t,s)
+				let html=''
+				html += `
+					<div class="box">
+						<div class="img"><img src=`+`../images/ljy.jpg alt="" /></div>
+						<p>加速骑士</p>
+				    </div>
+					<a style="--i: 3;" onclick="go(${id},${t},${s})">传给下一位</a>
+				  `;
+				banner.innerHTML = html;
+			}
+
+		
+		function go(){
+			//console.log(id,t,s)
+			var myParam = id;
+			var myParam2 = t+1;
+			var myParam3 = s;
+			if(t<s-1)
+			{
+				window.location.href = "send1.html?myParam=" + encodeURIComponent(myParam)+"&myParam2="+encodeURIComponent(myParam2)+"&myParam3="+encodeURIComponent(myParam3);	
+			}
+			else{
+				window.location.href="end.html?myParam="+encodeURIComponent(myParam);
+			}
+		}
+
+	</script>
+</html>
+

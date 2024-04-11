@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../css/send1.css" />
+	</head>
+	<body >
+		<a onclick="go()">查看身份</a>
+	</body>
+	
+	<script>
+			var query = window.location.search;
+			var params = new URLSearchParams(query);
+			var nums= params.get("myParam");
+			var n=params.get("myParam2")
+			var sum=params.get("myParam3")
+			var flag=params.get("myParam4")
+			
+			var id=nums.split(",")
+			var t=parseInt(n)
+			var s=parseInt(sum)
+			var f=parseInt(flag)
+			
+		
+		function go(){
+			//console.log(id,t,s)
+			var myParam = id;
+			var myParam2 = t;
+			var myParam3 = s;
+			var myParam4 = f;
+			if(t<s)
+			{
+				window.location.href = "send.html?myParam=" + encodeURIComponent(myParam)+"&myParam2="+encodeURIComponent(myParam2)+"&myParam3="+encodeURIComponent(myParam3)+"&myParam4="+encodeURIComponent(myParam4);	
+			}
+			else{
+				if(f==1)//让盗贼选
+				{
+					alert("本场有盗贼，请先让盗贼选择")
+					window.location.href = "thief.html?myParam=" + encodeURIComponent(myParam)+"&myParam3="+encodeURIComponent(myParam3)+"&myParam4="+encodeURIComponent(myParam4);
+				}
+				else if(f==2){
+					alert("本场无盗贼")
+					window.location.href="end.html?myParam="+encodeURIComponent(myParam)+"&myParam3="+encodeURIComponent(myParam3)+"&myParam4="+encodeURIComponent(myParam4);;
+				}
+				else{
+					window.location.href="end.html?myParam="+encodeURIComponent(myParam)+"&myParam3="+encodeURIComponent(myParam3)+"&myParam4="+encodeURIComponent(myParam4);;		
+				}
+			}
+			
+		}
+
+	</script>
+</html>

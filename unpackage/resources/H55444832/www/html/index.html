@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>狼人之夜</title>
+		<link rel="stylesheet" href="../css/index.css" />
+	</head>
+
+	<body>
+		
+		<div class="container" id="good">
+				
+		</div>
+		
+	</body>
+	
+	
+	<script src="../js/good.js"></script>
+	<script>
+		var num=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+						0,0,0,0,0,0];
+		function sub(x){
+			if(num[x]>0)
+			{
+				num[x]--;
+			}
+			var heading = document.getElementById(x)
+			heading.innerHTML = num[x];
+			
+		}
+		function add(x){
+			num[x]++;
+			var heading = document.getElementById(x)
+			heading.innerHTML = num[x];
+		}
+		function go(){
+			var t=0
+			var id=[]
+			for(i=1;i<=45;i++)
+			{
+				while(num[i]!=0)
+				{
+					id[t]=i;
+					t++;
+					num[i]--;
+				}
+			}
+			for (var i = 0; i < id.length; i++) {
+				var iRand = parseInt(id.length * Math.random());
+				var temp = id[i];
+				id[i] = id[iRand];
+				id[iRand] = temp;
+			}
+			var myParam = id;
+			var myParam2 = t;
+			//console.log(myParam)
+			//console.log(t)
+			window.location.href = "a.html?myParam=" + encodeURIComponent(myParam)+"&myParam2="+encodeURIComponent(myParam2);
+		}
+
+		
+	</script>
+</html>

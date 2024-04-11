@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../css/send1.css" />
+	</head>
+	<body >
+		<a onclick="go()">查看身份</a>
+	</body>
+	
+	<script>
+			var query = window.location.search;
+			var params = new URLSearchParams(query);
+			var nums= params.get("myParam");
+			var change=params.get("myParam2")
+			var flag=params.get("myParam4")
+			var sum=params.get("myParam3")
+			
+			var id=nums.split(",")
+			var c=parseInt(change)
+			var s=parseInt(sum)
+			var f=parseInt(change)
+			
+		
+		function go(){
+			//console.log(id,t,s)
+			var myParam = id;
+			var myParam2 = c;
+			var myParam3 = s;
+			var myParam4 = f;
+			window.location.href="end.html?myParam="+encodeURIComponent(myParam)+"&myParam2="+encodeURIComponent(myParam2)+"&myParam3="+encodeURIComponent(myParam3)+"&myParam4="+encodeURIComponent(myParam4);
+		}
+
+	</script>
+</html>

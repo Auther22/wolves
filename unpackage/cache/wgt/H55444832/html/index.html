@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>狼人之夜</title>
+		<link rel="stylesheet" href="../css/index.css" />
+	</head>
+
+	<body>
+		
+		<div class="container" id="good">
+				
+		</div>
+		
+	</body>
+	
+	
+	<script src="../js/good.js"></script>
+	<script>
+		var num=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+						0,0,0,0,0,0,0,0,0,0];
+		var sum=0
+		function sub(x){
+			if(num[x]>0)
+			{
+				num[x]--;
+				sum--;
+			}
+			var heading = document.getElementById(x)
+			heading.innerHTML = num[x];
+			var h=document.getElementById("fontid")
+			h.innerHTML=sum
+			
+		}
+		function add(x){
+			num[x]++;
+			sum++;
+			var heading = document.getElementById(x)
+			heading.innerHTML = num[x];
+			var h=document.getElementById("fontid")
+			h.innerHTML=sum
+		}
+		function go(){
+			var t=0
+			var id=[]
+			var flag=0
+			for(i=1;i<=49;i++)
+			{
+				while(num[i]!=0)
+				{
+					if(i==3)
+					{
+						flag=1
+					}
+					id[t]=i;
+					t++;
+					num[i]--;
+				}
+			}
+			for (var i = 0; i < id.length; i++) {
+				var iRand = parseInt(id.length * Math.random());
+				var temp = id[i];
+				id[i] = id[iRand];
+				id[iRand] = temp;
+			}
+			if(flag==1)//盗贼会多两张牌（最后两张）,while循环保证不会洗到两张狼 
+			{
+				t=t-2
+				while(id[id.length-1]>=30&&id[id.length-1]<=46&&id[id.length-2]>=30&&id[id.length-2]<=46)
+				{
+					for (var i = 0; i < id.length; i++) {
+						var iRand = parseInt(id.length * Math.random());
+						var temp = id[i];
+						id[i] = id[iRand];
+						id[iRand] = temp;
+					}
+				}
+				if(id[id.length-1]==3||id[id.length-2]==3)//说明和普通的局一样，因为盗贼在最后两张，正常玩就好
+				{
+					flag=2
+				}
+			}
+			console.log(id)
+			var myParam = id;
+			var myParam2 = t;
+			var myParam3 = flag;//flag为1说明洗牌之后有人会抽到盗贼，为2|0说明没人抽到盗贼 
+			//console.log(myParam)
+			//console.log(t)
+			window.location.href = "a.html?myParam=" + encodeURIComponent(myParam)+"&myParam2="+encodeURIComponent(myParam2)+"&myParam3="+encodeURIComponent(myParam3);
+		}
+		
+	</script>
+</html>
